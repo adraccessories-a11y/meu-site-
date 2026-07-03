@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESKTI | Técnico de Informática em São Paulo</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        techDark: '#030712',
+                        techCard: 'rgba(17, 24, 39, 0.85)',
+                        neonCyan: '#00f2fe',
+                        neonPurple: '#7c3aed',
+                        neonGreen: '#10b981',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Efeito de Grade Cibernética em Movimento */
+        .tech-bg-grid {
+            background-image: 
+                linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center top;
+            animation: gridMove 25s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 500px; }
+        }
+
+        /* Animação de Pulsação Ondular para o WhatsApp */
+        @keyframes wa-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6), 0 0 0 0 rgba(0, 242, 254, 0.3);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(16, 185, 129, 0), 0 0 0 25px rgba(0, 242, 254, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0), 0 0 0 0 rgba(0, 242, 254, 0);
+            }
+        }
+        .animate-wa-pulse {
+            animation: wa-pulse 2s infinite;
+        }
+
+        /* Animações e Efeitos Neon */
+        .glow-cyan {
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
+        }
+        .glow-cyan-hover:hover {
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.4);
+            border-color: #00f2fe;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #00f2fe, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animação Float */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Scrollbar Personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f2fe;
+        }
+    </style>
+</head>
+<body class="bg-techDark text-gray-200 font-sans selection:bg-neonCyan selection:text-black overflow-x-hidden">
+
+    <!-- Fundo tecnológico fixo -->
+    <div class="fixed inset-0 tech-bg-grid pointer-events-none z-0"></div>
+    <div class="fixed inset-0 bg-gradient-to-b from-transparent via-techDark/75 to-techDark pointer-events-none z-0"></div>
+
+    <!-- HEADER / NAVIGATION (Simplificado e Limpo para fácil leitura) -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-techDark/90 border-b border-gray-800/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            
+            <div class="flex items-center gap-3">
+                <!-- Logo SVG editável: altere o caminho abaixo para o valor desejado -->
+                <img src="assets/company-logo.svg" alt="Logo da empresa" class="w-10 h-10 rounded-lg bg-techDark/90 border border-neonCyan/20 p-1" />
+                <div>
+                    <!-- NOME DA SUA EMPRESA -->
+                    <span class="font-sans font-extrabold text-lg tracking-wide text-white">DESKTI <span class="text-neonCyan font-normal"></span></span>
+                </div>
+            </div>
+
+            <!-- Links Desktop (Simplificados para leigos entenderem) -->
+            <div class="hidden md:flex items-center gap-8 font-sans text-sm font-semibold text-gray-300">
+                <a href="#sobre" class="hover:text-neonCyan transition-all">SOBRE MIM</a>
+                <a href="#servicos" class="hover:text-neonCyan transition-all">SERVIÇOS</a>
+                <a href="#diagnostico" class="hover:text-neonCyan transition-all">DIAGNÓSTICO FÁCIL</a>
+                <a href="#terminal" class="hover:text-neonCyan transition-all">CONSOLE DE AJUDA</a>
+                <a href="#contato" class="px-5 py-2.5 rounded-lg border border-neonCyan/30 bg-neonCyan/5 hover:bg-neonCyan hover:text-black font-bold transition-all glow-cyan-hover">
+                    FALAR COM TÉCNICO
+                </a>
+            </div>
+
+            <!-- Botão Mobile -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-neonCyan focus:outline-none">
+                <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-gray-800 bg-techDark/95 backdrop-blur-lg px-6 py-6 flex flex-col gap-4 font-sans text-sm font-semibold">
+            <a href="#sobre" onclick="toggleMobileMenu()" class="text-gray-300 py-2 border-b border-gray-900">SOBRE MIM</a>
+            <a href="#servicos" onclick="toggleMobileMenu()" class="text-gray-300 py-2 border-b border-gray-900">SERVIÇOS</a>
+            <a href="#diagnostico" onclick="toggleMobileMenu()" class="text-gray-300 py-2 border-b border-gray-900">DIAGNÓSTICO FÁCIL</a>
+            <a href="#terminal" onclick="toggleMobileMenu()" class="text-gray-300 py-2 border-b border-gray-900">CONSOLE DE AJUDA</a>
+            <a href="#contato" onclick="toggleMobileMenu()" class="block text-center py-3 rounded bg-neonCyan text-black font-bold">
+                FALAR COM TÉCNICO
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Texto Hero (Focado em clareza extrema e acolhimento) -->
+        <div class="lg:col-span-7 flex flex-col items-start gap-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neonCyan/10 border border-neonCyan/20 text-neonCyan font-sans text-xs font-semibold">
+                <!-- Bolinha de Status com efeito de Radar Verde Pulsante -->
+                <span class="relative flex h-2.5 w-2.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neonGreen opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-neonGreen"></span>
+                </span>
+                <span>DISPONÍVEL AGORA</span>
+            </div>
+
+            <!-- SEO LOCAL H1 -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                ATENDIMENTO REMOTO E PRESENCIAL <span class="text-gradient font-black">EM SÃO PAULO/SP</span>
+            </h1>
+
+            <p class="text-gray-300 text-lg max-w-xl leading-relaxed font-sans">
+                Conserto de computadores, notebooks e redes de internet de forma rápida, honesta e sem complicações. Atendimento direto na sua casa,empresa,ou remotamente com garantia total.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2">
+                <a href="#diagnostico" class="px-8 py-4 rounded-xl bg-gradient-to-r from-neonCyan to-neonPurple text-black font-extrabold text-center glow-cyan hover:scale-[1.02] transition-all">
+                    Descobrir Problema do meu PC
+                </a>
+                <a href="#servicos" class="px-8 py-4 rounded-xl border border-gray-700 hover:border-neonCyan hover:bg-neonCyan/5 text-center font-bold transition-all">
+                    Ver Serviços Comuns
+                </a>
+            </div>
+
+            <!-- Badges de Confiança (Linguagem mais humana e reconfortante) -->
+            <div class="grid grid-cols-3 gap-6 pt-6 border-t border-gray-800/80 w-full text-center sm:text-left">
+                <div>
+                    <h3 class="text-2xl font-bold text-neonCyan font-sans">100%</h3>
+                    <p class="text-xs text-gray-400 mt-1 font-semibold">Garantia ou seu dinheiro de volta</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-white font-sans">Rápido</h3>
+                    <p class="text-xs text-gray-400 mt-1 font-semibold">Atendimento no mesmo dia</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-neonPurple font-sans">800+</h3>
+                    <p class="text-xs text-gray-400 mt-1 font-semibold font-sans">Aparelhos consertados</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card de Status do Especialista / Terminal de Código -->
+        <div class="lg:col-span-5 w-full">
+            <div class="bg-techCard border border-gray-800 rounded-xl overflow-hidden backdrop-blur-md animate-float glow-cyan">
+                <!-- Topo da Janela -->
+                <div class="bg-gray-900/90 px-4 py-3 flex items-center gap-2 border-b border-gray-800">
+                    <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                    <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                    <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                    <span class="text-xs font-mono text-gray-400 ml-2">sys_diagnose.py</span>
+                </div>
+                <!-- Corpo do Card / Código -->
+                <div class="p-6 font-mono text-xs sm:text-sm text-gray-300 leading-relaxed space-y-3">
+                    <p class="text-gray-500">// Buscando diagnóstico de sistema lento...</p>
+                    <p><span class="text-pink-500">import</span> hardware_diagnostics</p>
+                    <p class="text-cyan-400">class <span class="text-yellow-400">ResolucaoRapida</span>:</p>
+                    <p>&nbsp;&nbsp;<span class="text-pink-500">def</span> <span class="text-blue-400">__init__</span>(self):</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;self.atendimento = <span class="text-green-400">"Presencial & Remoto"</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;self.velocidade = <span class="text-green-400">"Upgrade SSD Ultra Fast"</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;self.seguranca = <span class="text-green-400">"Remocao de Malware & Ransomware"</span></p>
+                    <br>
+                    <p class="text-gray-500">// Status atual da máquina:</p>
+                    <p class="text-neonGreen">[OK] Hardware testado e otimizado.</p>
+                    <p class="text-neonCyan">[OK] Rede corporativa protegida com Firewall.</p>
+                    <p class="text-neonPurple">[INFO] Upgrade de memória RAM concluído.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SOBRE MIM -->
+    <section id="sobre" class="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-gray-900/60">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <span class="font-sans text-neonCyan text-xs font-bold tracking-widest block uppercase">// CONHEÇA SEU TÉCNICO</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                    SEU COMPUTADOR FUNCIONANDO NO POTENCIAL MÁXIMO, SEM ENROLAÇÃO.</h2>
+                <p class="text-gray-300 leading-relaxed font-sans">
+                    Me chamo **Adriano Amaral** e sou especialista em resolver problemas de computadores e notebooks. Atendo pessoas comuns e pequenas empresas que precisam de soluções rápidas, transparentes e sem explicações técnicas difíceis. Explico tudo de forma simples para você sempre saber exatamente pelo que está pagando.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-sans text-gray-300">
+                    <div class="flex items-center gap-2">
+                        <span class="text-neonCyan">✔</span> Montagem de Computadores para Trabalho e Jogos
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-neonCyan">✔</span> Deixar computadores lentos rápidos novamente
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-neonCyan">✔</span> Instalação de Internet Wi-Fi em toda a casa
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-neonCyan">✔</span> Salvamento (Backup) e Recuperação de Fotos e Arquivos
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative flex justify-center items-center">
+                <!-- Caixa de Efeito de Hardware / Detecção -->
+                <div class="absolute -inset-1 bg-gradient-to-r from-neonCyan to-neonPurple rounded-2xl blur-lg opacity-25 animate-pulse"></div>
+                <div class="relative bg-techCard border border-gray-800 p-8 rounded-2xl w-full max-w-md space-y-6">
+                    <h3 class="font-sans text-white text-lg font-bold flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-neonCyan"></span> Ficha do Profissional
+                    </h3>
+                    <div class="space-y-4 font-sans text-sm text-gray-300">
+                        <div class="flex justify-between border-b border-gray-800/50 pb-2">
+                            <span class="text-gray-400">Nome do Técnico:</span>
+                            <span class="text-white font-bold">Adriano Amaral</span>
+                        </div>
+                        <div class="flex justify-between border-b border-gray-800/50 pb-2">
+                            <span class="text-gray-400">Formação Técnica:</span>
+                            <span class="text-white">Análise de Sistemas</span>
+                        </div>
+                        <div class="flex justify-between border-b border-gray-800/50 pb-2">
+                            <span class="text-gray-400">Tempo de Atuação:</span>
+                            <span class="text-white">+9 anos de experiência</span>
+                        </div>
+                        <div class="flex justify-between border-b border-gray-800/50 pb-2">
+                            <span class="text-gray-400">Diferencial:</span>
+                            <span class="text-white text-right">Preço justo e sem complicação</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Área de Atendimento:</span>
+                            <span class="text-neonCyan font-bold">São Paulo, SP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIAGNÓSTICO INTELIGENTE (Interactive Diagnostic Tool - Simplificado para Leigos) -->
+    <section id="diagnostico" class="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-gray-900/60">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span class="font-sans text-neonPurple text-xs font-bold tracking-widest block uppercase">// AJUDA ONLINE RÁPIDA</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">DESCUBRA O PROBLEMA DO SEU COMPUTADOR</h2>
+            <p class="text-gray-300">Selecione o aparelho e o que está acontecendo com ele para descobrir o possível defeito e obter uma solução ideal em menos de 1 minuto.</p>
+        </div>
+
+        <div class="max-w-3xl mx-auto bg-techCard border border-gray-800 rounded-2xl p-8 backdrop-blur-md relative glow-cyan">
+            <!-- Passo 1: Escolha do Equipamento -->
+            <div id="diagStep1" class="space-y-6">
+                <div class="flex justify-between items-center font-sans text-xs text-gray-400 font-semibold">
+                    <span>SELECIONE QUAL É O SEU APARELHO:</span>
+                    <span>PASSO 1 DE 3</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <button onclick="selectDevice('desktop')" class="p-6 rounded-xl border border-gray-800 hover:border-neonCyan hover:bg-neonCyan/5 transition-all text-center flex flex-col items-center gap-4 group">
+                        <svg class="w-10 h-10 text-gray-400 group-hover:text-neonCyan transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <span class="font-bold text-white font-sans text-sm">Computador de Mesa</span>
+                    </button>
+                    <button onclick="selectDevice('notebook')" class="p-6 rounded-xl border border-gray-800 hover:border-neonCyan hover:bg-neonCyan/5 transition-all text-center flex flex-col items-center gap-4 group">
+                        <svg class="w-10 h-10 text-gray-400 group-hover:text-neonCyan transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        <span class="font-bold text-white font-sans text-sm">Notebook / Laptop</span>
+                    </button>
+                    <button onclick="selectDevice('rede')" class="p-6 rounded-xl border border-gray-800 hover:border-neonCyan hover:bg-neonCyan/5 transition-all text-center flex flex-col items-center gap-4 group">
+                        <svg class="w-10 h-10 text-gray-400 group-hover:text-neonCyan transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071a11 11 0 0114.142 0M2.05 8.05a16 16 0 0120 0"></path></svg>
+                        <span class="font-bold text-white font-sans text-sm">Minha Internet / Wi-Fi</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Passo 2: Seleção do Sintoma -->
+            <div id="diagStep2" class="space-y-6 hidden">
+                <div class="flex justify-between items-center font-sans text-xs text-gray-400 font-semibold">
+                    <span>O QUE ESTÁ ACONTECENDO COM ELE?</span>
+                    <span>PASSO 2 DE 3</span>
+                </div>
+                <div id="symptomsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Gerado Dinamicamente -->
+                </div>
+                <button onclick="backToStep(1)" class="text-sm font-sans text-gray-400 hover:text-white flex items-center gap-1 transition-all">
+                    ← Escolher outro aparelho
+                </button>
+            </div>
+
+            <!-- Passo 3: Resultado / Pré-Orçamento -->
+            <div id="diagStep3" class="space-y-6 hidden">
+                <div class="flex justify-between items-center font-sans text-xs text-gray-400 font-semibold">
+                    <span>POSSÍVEL DIAGNÓSTICO</span>
+                    <span>PASSO FINAL</span>
+                </div>
+                <div class="border border-neonCyan/20 bg-neonCyan/5 p-6 rounded-xl space-y-4">
+                    <h3 class="font-sans font-bold text-neonCyan text-base flex items-center gap-2">
+                        🔍 Resultado Preliminar
+                    </h3>
+                    <div class="space-y-3 text-sm text-gray-300 font-sans">
+                        <p><strong>Aparelho selecionado:</strong> <span id="resDevice" class="text-white capitalize">Notebook</span></p>
+                        <p><strong>Problema informado:</strong> <span id="resSymptom" class="text-white">Está muito lento / travando</span></p>
+                        <div class="h-[1px] bg-gray-800 my-3"></div>
+                        <p><strong>Causa provável do problema:</strong> <span id="resCause" class="text-gray-300">Isso geralmente acontece por desgaste ou poeira interna acumulada nas peças.</span></p>
+                        <p><strong>O que é recomendado fazer:</strong> <span id="resSolution" class="text-neonGreen font-semibold">Conserto recomendado com limpeza e otimização.</span></p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="sendDiagnosticToWhatsapp()" class="flex-1 py-4 bg-neonGreen hover:bg-neonGreen/90 text-black font-extrabold text-center rounded-xl font-sans flex items-center justify-center gap-2 transition-all">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.864-9.852.002-2.635-1.023-5.11-2.884-6.974C16.592 1.914 14.122.868 11.5.868c-5.442 0-9.873 4.416-9.877 9.858-.001 1.77.462 3.5 1.34 5.042l-.415 1.512 1.554-.407c1.551.846 3.111 1.285 4.545 1.285z"/></svg>
+                        Falar com Adriano no WhatsApp
+                    </button>
+                    <button onclick="backToStep(1)" class="py-4 px-6 border border-gray-800 hover:border-gray-600 text-gray-400 font-bold rounded-xl transition-all">
+                        Refazer Teste
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEUS SERVIÇOS (Linguagem Simplificada para Leigos) -->
+    <section id="servicos" class="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-gray-900/60">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span class="font-sans text-neonCyan text-xs font-bold tracking-widest block uppercase">// O QUE EU FAÇO</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">COMO POSSO TE AJUDAR HOJE?</h2>
+            <p class="text-gray-300">Ofereço serviços rápidos de informática para resolver os problemas mais comuns no seu dia a dia.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Serviço 1 -->
+            <div class="bg-techCard border border-gray-800 p-8 rounded-2xl hover:border-neonCyan/40 transition-all duration-300 group flex flex-col justify-between glow-cyan-hover">
+                <div class="space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-neonCyan/10 border border-neonCyan/20 flex items-center justify-center text-neonCyan group-hover:bg-neonCyan group-hover:text-black transition-all">
+                        <img src="assets/formatacao.svg" alt="Formatação segura" class="w-6 h-6">
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-neonCyan transition-all font-sans">Formatação Segura (Sem Perder Arquivos)</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-sans">Reinstalo o sistema operacional (Windows ou Mac) e restauro o computador, garantindo que suas fotos, senhas e documentos fiquem totalmente salvos.</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-800 flex items-center justify-between text-xs font-sans text-gray-400 font-semibold">
+                    <span>Presencial / Remoto</span>
+                    <a href="#contato" class="text-neonCyan group-hover:underline">Fazer Orçamento →</a>
+                </div>
+            </div>
+
+            <!-- Serviço 2 -->
+            <div class="bg-techCard border border-gray-800 p-8 rounded-2xl hover:border-neonCyan/40 transition-all duration-300 group flex flex-col justify-between glow-cyan-hover">
+                <div class="space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-neonCyan/10 border border-neonCyan/20 flex items-center justify-center text-neonCyan group-hover:bg-neonCyan group-hover:text-black transition-all">
+                        <img src="assets/virus.svg" alt="Remoção de vírus" class="w-6 h-6">
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-neonCyan transition-all font-sans">Remoção de Vírus e Segurança</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-sans">Sua tela está cheia de propagandas ou travando? Eu faço uma limpeza profunda e removo qualquer ameaça que esteja roubando seus dados ou deixando o PC lento.</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-800 flex items-center justify-between text-xs font-sans text-gray-400 font-semibold">
+                    <span>Atendimento Rápido</span>
+                    <a href="#contato" class="text-neonCyan group-hover:underline">Fazer Orçamento →</a>
+                </div>
+            </div>
+
+            <!-- Serviço 3 -->
+            <div class="bg-techCard border border-gray-800 p-8 rounded-2xl hover:border-neonCyan/40 transition-all duration-300 group flex flex-col justify-between glow-cyan-hover">
+                <div class="space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-neonCyan/10 border border-neonCyan/20 flex items-center justify-center text-neonCyan group-hover:bg-neonCyan group-hover:text-black transition-all">
+                        <img src="assets/wifi.svg" alt="Internet Wi-Fi" class="w-6 h-6">
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-neonCyan transition-all font-sans">Internet Wi-Fi Sem Quedas</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-sans">Instalo aparelhos modernos que ampliam o sinal do Wi-Fi pela casa inteira, acabando com as quedas frequentes e a lentidão na hora de ver vídeos ou trabalhar.</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-800 flex items-center justify-between text-xs font-sans text-gray-400 font-semibold">
+                    <span>Visita Presencial</span>
+                    <a href="#contato" class="text-neonCyan group-hover:underline">Fazer Orçamento →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TERMINAL INTERATIVO (Linguagem Amigável para Leigos) -->
+    <section id="terminal" class="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-gray-900/60">
+        <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+            <span class="font-sans text-neonCyan text-xs font-bold tracking-widest block uppercase">// AJUDA INTERATIVA</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">QUER RESPOSTAS NO NOSSO PAINEL?</h2>
+            <p class="text-gray-300 max-w-2xl mx-auto">Você não precisa saber programar!  Basta clicar em um dos botões cinzas abaixo para conseguir informações de suporte automáticas ou digitar uma palavra-chave.</p>
+        </div>
+
+        <div class="max-w-4xl mx-auto bg-black/90 border border-gray-800 rounded-2xl overflow-hidden font-mono shadow-2xl">
+            <!-- Topo do Console -->
+            <div class="bg-gray-900/80 px-4 py-3 flex items-center justify-between border-b border-gray-800/80">
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                    <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                    <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                    <span class="text-xs text-gray-400 ml-2">suporte_digital@adrianoti:~</span>
+                </div>
+                <span class="text-[10px] text-gray-500 font-semibold">MODO FÁCIL ATIVO</span>
+            </div>
+
+            <!-- Linhas do Console -->
+            <div id="terminalBody" class="p-6 h-[320px] overflow-y-auto text-sm text-gray-300 space-y-2">
+                <p class="text-gray-500">// Painel de Atendimento Automático do Adriano.</p>
+                <p>Clique nas opções de botões abaixo para obter a resposta imediatamente na tela:</p>
+            </div>
+
+            <!-- Sugestões Rápidas -->
+            <div class="bg-gray-950/80 px-6 py-3 border-t border-gray-900 flex flex-wrap gap-2 items-center text-xs text-gray-400">
+                <span class="font-sans font-semibold">Clique para ver:</span>
+                <button onclick="runCommand('ajuda')" class="px-3 py-1.5 rounded bg-gray-900 hover:bg-neonCyan/15 hover:text-neonCyan transition-all border border-gray-800 font-sans font-semibold">Instruções</button>
+                <button onclick="runCommand('contato')" class="px-3 py-1.5 rounded bg-gray-900 hover:bg-neonCyan/15 hover:text-neonCyan transition-all border border-gray-800 font-sans font-semibold">Como Falar Comigo</button>
+                <button onclick="runCommand('servicos')" class="px-3 py-1.5 rounded bg-gray-900 hover:bg-neonCyan/15 hover:text-neonCyan transition-all border border-gray-800 font-sans font-semibold">Serviços Comuns</button>
+                <button onclick="runCommand('limpar')" class="px-3 py-1.5 rounded bg-gray-900 hover:bg-neonCyan/15 hover:text-neonCyan transition-all border border-gray-800 font-sans font-semibold">Limpar Tela</button>
+            </div>
+
+            <!-- Input do Console -->
+            <div class="bg-gray-950/60 flex items-center px-6 py-4 border-t border-gray-900">
+                <span class="text-neonCyan mr-2">$</span>
+                <input type="text" id="terminalInput" class="w-full bg-transparent border-none text-white focus:ring-0 focus:outline-none placeholder-gray-650 font-sans text-sm" placeholder="Digite ajuda ou escolha uma das opções acima...">
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULÁRIO & CONTATO -->
+    <section id="contato" class="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-gray-900/60">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            <!-- Detalhes de Contato / Localização -->
+            <div class="space-y-6">
+                <span class="font-sans text-neonPurple text-xs font-bold tracking-widest block uppercase">// VAMOS CONVERSAR?</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Fale Comigo Sem Compromisso</h2>
+                <p class="text-gray-300 font-sans leading-relaxed">Você pode enviar uma mensagem rápida preenchendo o formulário ao lado (ela chegará no meu WhatsApp), ou clicar no botão verde flutuante no canto inferior direito para me ligar ou mandar um áudio.</p>
+
+                <!-- Informações do técnico -->
+                <div class="space-y-4 font-sans text-sm text-gray-300">
+                    <div class="flex items-center gap-3">
+                        <span class="text-neonCyan text-base">➔</span> <span><strong>Meu WhatsApp:</strong> (11) 99198-7105</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="text-neonCyan text-base">➔</span> <span><strong>Meu E-mail:</strong> desktisolution@gmail.com</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="text-neonCyan text-base">➔</span> <span><strong>Horário de Atendimento:</strong> Segunda a Sexta, das 8h às 18h</span>
+                    </div>
+                </div>
+
+                <!-- Google Maps Embed Simulado / Área de Cobertura -->
+                <div class="border border-gray-800 bg-techCard rounded-2xl p-6 space-y-4">
+                    <h3 class="font-sans text-white text-sm font-bold flex items-center gap-2">
+                        📍 Cidades e Bairros que Atendo Presencialmente
+                    </h3>
+                    <p class="text-xs text-gray-400 font-sans">Atendo presencialmente em residências e empresas nas seguintes regiões de São Paulo e arredores:</p>
+                    <div class="flex flex-wrap gap-2 text-xs font-sans">
+                        <span class="px-2 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-neonCyan font-semibold">Sp</span>
+                        <span class="px-2 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-neonCyan font-semibold">Zona Oeste</span>
+                        <span class="px-2 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-neonCyan font-semibold">Zona Norte</span>
+                        <span class="px-2 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-neonCyan font-semibold">Zona Sul</span>
+                        <span class="px-2 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-neonCyan font-semibold">Zona Leste</span>
+                        
+                    
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="bg-techCard border border-gray-800 rounded-2xl p-8 backdrop-blur-md glow-cyan">
+                <form id="contactForm" class="space-y-6" onsubmit="handleFormSubmit(event)">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans">
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold text-gray-400">SEU NOME COMPLETO</label>
+                            <input type="text" required id="formName" class="w-full bg-black/50 border border-gray-800 rounded-lg p-3 text-white focus:border-neonCyan focus:ring-1 focus:ring-neonCyan transition-all" placeholder="Ex: João da Silva">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold text-gray-400">SEU TELEFONE / WHATSAPP</label>
+                            <input type="tel" required id="formTel" class="w-full bg-black/50 border border-gray-800 rounded-lg p-3 text-white focus:border-neonCyan focus:ring-1 focus:ring-neonCyan transition-all" placeholder="Ex: (11) 98888-8888">
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 font-sans">
+                        <label class="block text-xs font-bold text-gray-400">SEU E-MAIL (OPCIONAL)</label>
+                        <input type="email" id="formEmail" class="w-full bg-black/50 border border-gray-800 rounded-lg p-3 text-white focus:border-neonCyan focus:ring-1 focus:ring-neonCyan transition-all" placeholder="Ex: joao@gmail.com">
+                    </div>
+
+                    <div class="space-y-2 font-sans">
+                        <label class="block text-xs font-bold text-gray-400">O QUE ESTÁ ACONTECENDO COM SEU APARELHO?</label>
+                        <textarea rows="4" required id="formMessage" class="w-full bg-black/50 border border-gray-800 rounded-lg p-3 text-white focus:border-neonCyan focus:ring-1 focus:ring-neonCyan transition-all" placeholder="Conte-me um pouco sobre o que houve de errado (computador não liga, notebook superaquecendo, etc)"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 bg-gradient-to-r from-neonCyan to-neonPurple text-black font-extrabold rounded-xl font-sans flex items-center justify-center gap-2 transition-all hover:scale-[1.01] glow-cyan">
+                        Enviar Mensagem para meu WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CREDITOS -->
+    <footer class="relative z-10 border-t border-gray-900 bg-black/40 py-12 text-center text-xs text-gray-400 font-sans font-medium">
+        <div class="max-w-7xl mx-auto px-6 space-y-4">
+            <p>© 2026 DESKTI Informática. Todos os direitos reservados.</p>
+            
+        </div>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP (PULSANTE COM LOGO OFICIAL) -->
+    <a href="https://wa.me/5511991987105?text=Ol%C3%A1%21+Gostaria+de+solicitar+um+suporte+t%C3%A9cnico+com+urg%C3%AAncia." target="_blank" class="fixed bottom-6 right-6 z-50 p-4 bg-[#25D366] text-white rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center border border-white/10 animate-wa-pulse" title="Falar no WhatsApp">
+        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- SCRIPTS DE COMPORTAMENTO E INTERATIVIDADE -->
+    <script>
+        // Menu Mobile Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Terminal Interativo
+        const terminalBody = document.getElementById('terminalBody');
+        const terminalInput = document.getElementById('terminalInput');
+
+        const commands = {
+            ajuda: `Opções de ajuda rápida:<br>
+                    - Clique em <span class="text-neonCyan font-bold">Como Falar Comigo</span>: Mostra meu telefone de WhatsApp direto.<br>
+                    - Clique em <span class="text-neonCyan font-bold">Serviços Comuns</span>: Veja o que costumo resolver no dia a dia.<br>
+                    - Clique em <span class="text-neonCyan font-bold">Limpar Tela</span>: Reseta as mensagens do painel.`,
+            servicos: `Serviços que mais realizo:<br>
+                       [✔] Deixar computadores lentos muito rápidos de forma simples.<br>
+                       [✔] Formatação completa sem perder seus arquivos pessoais.<br>
+                       [✔] Configuração de Wi-Fi de longo alcance para a casa toda.`,
+            contato: `Você pode falar comigo das seguintes formas:<br>
+                      ➔ WhatsApp Direto: (11) 99198-7105<br>
+                      ➔ E-mail: desktisolution@gmail.com<br>
+                      Se preferir, clique no botão verde do WhatsApp piscando na tela!`,
+            limpar: '',
+            diagnostico: 'Para fazer o teste automático, role a tela para cima até a seção "Diagnóstico Fácil"!',
+        };
+
+        function runCommand(cmdText) {
+            const cmd = cmdText.trim().toLowerCase();
+            let output = '';
+
+            if (cmd === 'limpar') {
+                terminalBody.innerHTML = '<p class="text-gray-500">// Painel redefinido com sucesso.</p>';
+                return;
+            }
+
+            // Mapeando botões do console para os termos corretos da linguagem limpa
+            let mappedCmd = cmd;
+            if (cmd === 'como falar comigo') mappedCmd = 'contato';
+            if (cmd === 'serviços comuns') mappedCmd = 'servicos';
+            if (cmd === 'limpar tela') mappedCmd = 'limpar';
+            if (cmd === 'instruções') mappedCmd = 'ajuda';
+
+            if (commands[mappedCmd]) {
+                output = commands[mappedCmd];
+            } else if (cmd !== '') {
+                output = `Opção não identificada: "${cmd}". Para ver as instruções, clique no botão <span class="text-neonCyan font-bold">Instruções</span> acima.`;
+            }
+
+            if (cmd !== '') {
+                terminalBody.innerHTML += `<p class="mt-2 text-xs font-semibold"><span class="text-neonCyan">$</span> Opção selecionada: ${cmd}</p>`;
+                terminalBody.innerHTML += `<p class="text-gray-400 mt-1 font-sans text-sm">${output}</p>`;
+                terminalBody.scrollTop = terminalBody.scrollHeight;
+            }
+        }
+
+        // Listener de Enter para o input do Terminal
+        terminalInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                const cmd = terminalInput.value;
+                runCommand(cmd);
+                terminalInput.value = '';
+            }
+        });
+
+        // Diagnóstico Inteligente (Com Linguagem Explicativa de Fácil Entendimento)
+        let selectedDevice = '';
+        let selectedSymptom = '';
+        
+        const symptomsData = {
+            desktop: [
+                { text: 'Está muito lento ou travando', cause: 'Falta de memória temporária ou desgaste do disco rígido original antigo.', solution: 'Instalação de um SSD (peça de tecnologia moderna que deixa o PC até 10x mais rápido) e otimização do sistema.' },
+                { text: 'Não liga ou não dá sinal na tela', cause: 'Mal contato nas conexões de memória interna ou defeito na fonte de energia que alimenta o aparelho.', solution: 'Limpeza especializada das conexões físicas e teste ou troca da fonte de energia.' },
+                { text: 'Esquenta muito ou faz barulho forte de ventoinha', cause: 'Poeira acumulada impedindo o ar de circular e ressecamento do gel refrigerante interno do chip principal.', solution: 'Limpeza física profunda da poeira acumulada e troca do gel refrigerante (pasta térmica) por um de alta eficiência.' }
+            ],
+            notebook: [
+                { text: 'Está muito lento ou travando', cause: 'Capacidade de armazenamento do sistema comprometida ou sobrecarregada por programas desnecessários.', solution: 'Substituição da peça antiga de armazenamento por um SSD moderno super rápido e formatação limpa.' },
+                { text: 'Bateria acaba muito rápido', cause: 'Desgaste natural do tempo da bateria interna do notebook.', solution: 'Troca da bateria original desgastada por uma bateria nova de alta qualidade certificada.' },
+                { text: 'Teclado travado ou digitando sozinho', cause: 'Sujeira pesada, infiltração imperceptível de líquidos ou falha nos contatos elétricos das teclas.', solution: 'Substituição simples do teclado original do notebook por um teclado novo.' }
+            ],
+            rede: [
+                { text: 'Sinal Wi-Fi fraco ou caindo', cause: 'Paredes grossas impedindo o sinal ou roteador de sinal fraco incapaz de cobrir toda a sua casa.', solution: 'Configuração de um Sistema de Wi-Fi Inteligente (Rede Mesh) que espalha internet forte por todos os cômodos.' },
+                { text: 'Internet lenta mesmo no cabo conectado', cause: 'Aparelhos configurados de forma errada ou cabos antigos que travam a velocidade real contratada.', solution: 'Configuração profissional dos aparelhos de internet e troca por cabos modernos de alta transmissão (CAT6).' }
+            ]
+        };
+
+        function selectDevice(device) {
+            selectedDevice = device;
+            const symptomsList = document.getElementById('symptomsList');
+            symptomsList.innerHTML = '';
+
+            // Mapeando nomes de dispositivos para versões amigáveis na interface de seleção de sintomas
+            let deviceFriendlyName = "aparelho";
+            if(device === 'desktop') deviceFriendlyName = "computador de mesa";
+            if(device === 'notebook') deviceFriendlyName = "notebook";
+            if(device === 'rede') deviceFriendlyName = "sistema de internet";
+
+            symptomsData[device].forEach((symptom) => {
+                const btn = document.createElement('button');
+                btn.className = "p-5 rounded-xl border border-gray-800 hover:border-neonCyan hover:bg-neonCyan/5 transition-all text-left flex justify-between items-center group font-sans text-sm font-semibold";
+                btn.onclick = () => selectSymptom(symptom);
+                btn.innerHTML = `
+                    <span class="text-white">${symptom.text}</span>
+                    <span class="text-neonCyan group-hover:translate-x-1 transition-transform">➔</span>
+                `;
+                symptomsList.appendChild(btn);
+            });
+
+            document.getElementById('diagStep1').classList.add('hidden');
+            document.getElementById('diagStep2').classList.remove('hidden');
+        }
+
+        function selectSymptom(symptomObj) {
+            selectedSymptom = symptomObj.text;
+            
+            let deviceFriendlyName = "Aparelho";
+            if(selectedDevice === 'desktop') deviceFriendlyName = "Computador de Mesa";
+            if(selectedDevice === 'notebook') deviceFriendlyName = "Notebook / Laptop";
+            if(selectedDevice === 'rede') deviceFriendlyName = "Internet ou Rede Wi-Fi";
+
+            document.getElementById('resDevice').innerText = deviceFriendlyName;
+            document.getElementById('resSymptom').innerText = selectedSymptom;
+            document.getElementById('resCause').innerText = symptomObj.cause;
+            document.getElementById('resSolution').innerText = symptomObj.solution;
+
+            document.getElementById('diagStep2').classList.add('hidden');
+            document.getElementById('diagStep3').classList.remove('hidden');
+        }
+
+        function backToStep(step) {
+            if (step === 1) {
+                document.getElementById('diagStep2').classList.add('hidden');
+                document.getElementById('diagStep3').classList.add('hidden');
+                document.getElementById('diagStep1').classList.remove('hidden');
+            }
+        }
+
+        function sendDiagnosticToWhatsapp() {
+            const num = "5511991987105";
+            let deviceFriendlyName = "Aparelho";
+            if(selectedDevice === 'desktop') deviceFriendlyName = "Computador de Mesa";
+            if(selectedDevice === 'notebook') deviceFriendlyName = "Notebook";
+            if(selectedDevice === 'rede') deviceFriendlyName = "Internet/Wi-Fi";
+
+            const text = encodeURIComponent(
+                `Olá Adriano! Fiz o teste rápido no seu site e gostaria de agendar uma avaliação técnica.\n\n` +
+                `➔ Aparelho: ${deviceFriendlyName}\n` +
+                `➔ O que está ocorrendo: ${selectedSymptom}\n` +
+                `Pode me passar uma estimativa de preço para consertarmos isso?`
+            );
+            window.open(`https://wa.me/${num}?text=${text}`, '_blank');
+        }
+
+        // Envio do formulário de contato simplificado
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('formName').value;
+            const tel = document.getElementById('formTel').value;
+            const email = document.getElementById('formEmail').value || 'Não informado';
+            const msg = document.getElementById('formMessage').value;
+
+            const text = encodeURIComponent(
+                `Olá Adriano! Solicitação de Suporte via Site:\n\n` +
+                `➔ Nome: ${name}\n` +
+                `➔ E-mail: ${email}\n` +
+                `➔ Tel: ${tel}\n` +
+                `➔ Problema: ${msg}`
+            );
+            window.open(`https://wa.me/5511991987105?text=${text}`, '_blank');
+        }
+    </script>
+</body>
+</html>
+```
