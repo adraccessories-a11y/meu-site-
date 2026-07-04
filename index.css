@@ -59,7 +59,7 @@ html {
     font-family: var(--font-mono);
     font-weight: 700;
     color: var(--neon-blue);
-    letter-spacing: 1px;
+    letter-spacing: 5px;
 }
 
 .nav-links a {
