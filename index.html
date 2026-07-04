@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DESKTI | Técnico de Informática em São Paulo</title>
+    <link rel="icon" href="assets/deskti-favicon.svg" type="image/svg+xml" />
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -30,19 +31,72 @@
     </script>
 
     <style>
-        /* Efeito de Grade Cibernética em Movimento */
+        /* Efeito Neural Tecnológico - Conceito Alternativo */
         .tech-bg-grid {
-            background-image: 
-                linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            background-position: center top;
-            animation: gridMove 25s linear infinite;
+            position: fixed;
+            inset: 0;
+            background-color: #020712;
+            background-image:
+                radial-gradient(circle at 15% 18%, rgba(0, 242, 254, 0.16), transparent 22%),
+                radial-gradient(circle at 78% 20%, rgba(124, 58, 237, 0.12), transparent 20%),
+                linear-gradient(135deg, rgba(4, 10, 27, 0.98) 0%, rgba(10, 16, 36, 0.96) 45%, rgba(7, 13, 28, 1) 100%);
+            background-repeat: no-repeat;
+            box-shadow: inset 0 0 220px rgba(0,0,0,0.55);
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .tech-bg-grid::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(90deg, rgba(0, 242, 254, 0.14) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(124, 58, 237, 0.10) 1px, transparent 1px),
+                linear-gradient(45deg, rgba(0, 242, 254, 0.12) 1px, transparent 1px),
+                linear-gradient(135deg, rgba(124, 58, 237, 0.08) 1px, transparent 1px);
+            background-size: 63px 63px, 63px 63px, 127px 127px, 127px 127px;
+            opacity: 0.32;
+            pointer-events: none;
+            filter: blur(0.6px);
+            mix-blend-mode: screen;
+            animation: gridMove 12s linear infinite;
+        }
+
+        .tech-bg-grid::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 20% 24%, rgba(0, 242, 254, 0.24), transparent 16%),
+                radial-gradient(circle at 72% 26%, rgba(124, 58, 237, 0.22), transparent 18%),
+                radial-gradient(circle at 52% 62%, rgba(16, 185, 129, 0.18), transparent 20%);
+            background-size: 62% 62%, 58% 58%, 78% 78%;
+            opacity: 0.80;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            animation: glowPulse 14s ease-in-out infinite alternate;
+        }
+
+        .bg-techDark {
+            background: #020614 !important;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.70; transform: translateX(-3%) translateY(0); }
+            50% { opacity: 1; transform: translateX(3%) translateY(-1.5%); }
         }
 
         @keyframes gridMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 500px; }
+            0% { background-position: 0 0, 0 0, 0 0, 0 0; }
+            50% { background-position: 32px 32px, -32px 32px, 16px -16px, -16px -16px; }
+            100% { background-position: 64px 64px, -64px 64px, 32px -32px, -32px -32px; }
+        }
+
+        @keyframes corePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.005); }
+            100% { transform: scale(1); }
         }
 
         /* Animação de Pulsação Ondular para o WhatsApp */
@@ -61,6 +115,54 @@
             animation: wa-pulse 2s infinite;
         }
 
+        .whatsapp-widget {
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.75rem;
+            pointer-events: none;
+        }
+        .whatsapp-widget > * {
+            pointer-events: auto;
+        }
+        .whatsapp-btn {
+            position: relative;
+            width: 3.5rem;
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-ai-note {
+            position: absolute;
+            bottom: 4.5rem;
+            right: 0;
+            width: 12rem;
+            padding: 0.75rem 0.9rem;
+            background: rgba(2, 7, 18, 0.96);
+            border: 1px solid rgba(0, 242, 254, 0.16);
+            border-radius: 1rem;
+            color: #cfefff;
+            font-size: 0.78rem;
+            line-height: 1.3;
+            text-align: left;
+            opacity: 0.9;
+            animation: notePop 3.8s ease-in-out infinite;
+        }
+        .whatsapp-ai-note::before {
+            content: '🤖';
+            margin-right: 0.4rem;
+        }
+        @keyframes notePop {
+            0%, 100% { transform: translateY(0); opacity: 0.88; }
+            50% { transform: translateY(-4px); opacity: 1; }
+        }
+
         /* Animações e Efeitos Neon */
         .glow-cyan {
             box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
@@ -71,6 +173,7 @@
         }
         .text-gradient {
             background: linear-gradient(135deg, #00f2fe, #7c3aed);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -82,47 +185,6 @@
         }
         .animate-float {
             animation: float 6s ease-in-out infinite;
-        }
-
-        /* Fundo Neural Animado */
-        .neural-bg {
-            background: radial-gradient(circle at 20% 20%, rgba(0, 242, 254, 0.12), transparent 18%),
-                        radial-gradient(circle at 80% 13%, rgba(124, 58, 237, 0.12), transparent 15%),
-                        radial-gradient(circle at 35% 78%, rgba(16, 185, 129, 0.1), transparent 13%);
-            mix-blend-mode: screen;
-            opacity: 0.6;
-        }
-        .neural-bg::before,
-        .neural-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            mix-blend-mode: screen;
-        }
-        .neural-bg::before {
-            background-image:
-                radial-gradient(circle, rgba(0, 242, 254, 0.18) 1px, transparent 1px),
-                radial-gradient(circle, rgba(124, 58, 237, 0.15) 1px, transparent 1px);
-            background-size: 80px 80px, 120px 120px;
-            animation: neuralDrift 38s linear infinite;
-            opacity: 0.65;
-        }
-        .neural-bg::after {
-            background-image:
-                linear-gradient(120deg, rgba(0, 242, 254, 0.08) 1px, transparent 1px),
-                linear-gradient(60deg, rgba(124, 58, 237, 0.08) 1px, transparent 1px);
-            background-size: 360px 360px;
-            animation: neuralDriftReverse 46s linear infinite;
-            opacity: 0.45;
-        }
-        @keyframes neuralDrift {
-            from { background-position: 0 0, 100px 100px; }
-            to { background-position: 280px 280px, -140px -140px; }
-        }
-        @keyframes neuralDriftReverse {
-            from { background-position: 0 0, 0 0; }
-            to { background-position: -260px -260px, 260px 260px; }
         }
 
         /* Scrollbar Personalizada */
@@ -143,10 +205,8 @@
 </head>
 <body class="bg-techDark text-gray-200 font-sans selection:bg-neonCyan selection:text-black overflow-x-hidden">
 
-    <!-- Fundo tecnológico fixo -->
+    <!-- Fundo espacial sideral fixo -->
     <div class="fixed inset-0 tech-bg-grid pointer-events-none z-0"></div>
-    <div class="fixed inset-0 bg-gradient-to-b from-transparent via-techDark/75 to-techDark pointer-events-none z-0"></div>
-    <div class="fixed inset-0 pointer-events-none z-0 neural-bg"></div>
 
     <!-- HEADER / NAVIGATION (Simplificado e Limpo para fácil leitura) -->
     <nav class="sticky top-0 z-50 backdrop-blur-md bg-techDark/90 border-b border-gray-800/60 transition-all duration-300">
@@ -191,7 +251,7 @@
     </nav>
 
     <!-- HERO SECTION -->
-    <header class="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <header class="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <!-- Texto Hero (Focado em clareza extrema e acolhimento) -->
         <div class="lg:col-span-7 flex flex-col items-start gap-6">
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neonCyan/10 border border-neonCyan/20 text-neonCyan font-sans text-xs font-semibold">
@@ -268,7 +328,7 @@
     </header>
 
     <!-- SOBRE MIM -->
-    <section id="sobre" class="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-gray-900/60">
+    <section id="sobre" class="relative z-10 max-w-7xl mx-auto px-6 py-16 border-t border-gray-900/60">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6">
                 <span class="font-sans text-neonCyan text-xs font-bold tracking-widest block uppercase">// CONHEÇA SEU TÉCNICO</span>
@@ -328,7 +388,7 @@
     </section>
 
     <!-- DIAGNÓSTICO INTELIGENTE (Interactive Diagnostic Tool - Simplificado para Leigos) -->
-    <section id="diagnostico" class="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-gray-900/60">
+    <section id="diagnostico" class="relative z-10 max-w-7xl mx-auto px-6 py-16 border-t border-gray-900/60">
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <span class="font-sans text-neonPurple text-xs font-bold tracking-widest block uppercase">// AJUDA ONLINE RÁPIDA</span>
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white">DESCUBRA O PROBLEMA DO SEU COMPUTADOR</h2>
@@ -405,7 +465,7 @@
     </section>
 
     <!-- MEUS SERVIÇOS (Linguagem Simplificada para Leigos) -->
-    <section id="servicos" class="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-gray-900/60">
+    <section id="servicos" class="relative z-10 max-w-7xl mx-auto px-6 py-16 border-t border-gray-900/60">
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <span class="font-sans text-neonCyan text-xs font-bold tracking-widest block uppercase">// O QUE EU FAÇO</span>
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white">COMO POSSO TE AJUDAR HOJE?</h2>
@@ -461,7 +521,7 @@
     </section>
 
     <!-- TERMINAL INTERATIVO (Linguagem Amigável para Leigos) -->
-    <section id="terminal" class="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-gray-900/60">
+    <section id="terminal" class="relative z-10 max-w-7xl mx-auto px-6 py-16 border-t border-gray-900/60">
         <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
             <span class="font-sans text-neonCyan text-xs font-bold tracking-widest block uppercase">// AJUDA INTERATIVA</span>
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white">QUER RESPOSTAS NO NOSSO PAINEL?</h2>
@@ -504,13 +564,13 @@
     </section>
 
     <!-- FORMULÁRIO & CONTATO -->
-    <section id="contato" class="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-gray-900/60">
+    <section id="contato" class="relative z-10 max-w-7xl mx-auto px-6 py-16 border-t border-gray-900/60">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             
             <!-- Detalhes de Contato / Localização -->
             <div class="space-y-6">
                 <span class="font-sans text-neonPurple text-xs font-bold tracking-widest block uppercase">// VAMOS CONVERSAR?</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Fale Comigo Sem Compromisso</h2>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">FALE COMIGO SEM COMPROMISSO</h2>
                 <p class="text-gray-300 font-sans leading-relaxed">Você pode enviar uma mensagem rápida preenchendo o formulário ao lado (ela chegará no meu WhatsApp), ou clicar no botão verde flutuante no canto inferior direito para me ligar ou mandar um áudio.</p>
 
                 <!-- Informações do técnico -->
@@ -568,8 +628,8 @@
                         <textarea rows="4" required id="formMessage" class="w-full bg-black/50 border border-gray-800 rounded-lg p-3 text-white focus:border-neonCyan focus:ring-1 focus:ring-neonCyan transition-all" placeholder="Conte-me um pouco sobre o que houve de errado (computador não liga, notebook superaquecendo, etc)"></textarea>
                     </div>
 
-                    <button type="submit" class="w-full py-4 bg-gradient-to-r from-neonCyan to-neonPurple text-black font-extrabold rounded-xl font-sans flex items-center justify-center gap-2 transition-all hover:scale-[1.01] glow-cyan">
-                        Enviar Mensagem para meu WhatsApp
+                    <button type="submit" class="w-full py-3 bg-gradient-to-r from-neonCyan to-neonPurple text-black font-extrabold rounded-xl font-sans flex items-center justify-center gap-2 transition-all hover:scale-[1.01] glow-cyan">
+                        Enviar Mensagem
                     </button>
                 </form>
             </div>
@@ -585,11 +645,13 @@
     </footer>
 
     <!-- BOTÃO FLUTUANTE DO WHATSAPP (PULSANTE COM LOGO OFICIAL) -->
-    <a href="https://wa.me/5511991987105?text=Ol%C3%A1%21+Gostaria+de+solicitar+um+suporte+t%C3%A9cnico+com+urg%C3%AAncia." target="_blank" class="fixed bottom-6 right-6 z-50 p-4 bg-[#25D366] text-white rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center border border-white/10 animate-wa-pulse" title="Falar no WhatsApp">
-        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-    </a>
+    <div class="whatsapp-widget animate-wa-pulse">
+        <a href="https://wa.me/5511991987105?text=Ol%C3%A1%21+Gostaria+de+iniciar+o+atendimento+e+contar+o+meu+problema." target="_blank" class="whatsapp-btn bg-[#25D366] text-white rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center border border-white/10" title="Falar no WhatsApp">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+        </a>
+    </div>
 
     <!-- SCRIPTS DE COMPORTAMENTO E INTERATIVIDADE -->
     <script>
